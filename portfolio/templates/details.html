@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+  <div id="content">
+    <div class="title">{{ post.title}}</div>
+    <img align="center" src = "{{post.image.url}}" width="800"/><br>
+    {{post.body}}
+  </div>
+{% endblock %}

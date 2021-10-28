@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block menu %}
+  <div id="topbar" onscroll="setBar()" >
+  {% for category in categories %}
+
+    <a class="topbar_menu" href="{% url 'category_posts' pk=category.pk %}">{{category.title}}</a>
+
+  {% endfor %}
+    <div class="drop-container">
+      <button class="dropdown" onclick="dropdown()">Dropdown menu</button>
+      <div class="dropdown-menu">
+  {% for category in categories %}
+
+      <a href="{% url 'category_posts' pk=category.pk %}">{{category.title}}</a>
+
+  {% endfor %}
+  </div>
+  </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+  <div id="content">
+    <div class="title">Portfolio</div>
+    {% if posts %}
+    <div class="grid-container">
+
+      {% for post in posts %}
+      <div class="card">
+        <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"> {{post.title}}</h5>
+          <p class="card-text">{{post.lead}}</p>
+          <a href="{% url 'details' pk=post.pk %}" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+      {% endfor %}
+
+      {% else %}
+        <div class="title">Brak zawartości do wyświetlenia</div>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}
